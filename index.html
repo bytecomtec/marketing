@@ -62,7 +62,7 @@
     <div class="container">
         <header>
             <h1>Catálogo de Recursos</h1>
-            <p>Haz clic en enviar, la imagen se copiará sola. ¡Solo llega al chat y dale Pegar!</p>
+            <p>Selecciona un flyer para enviarlo de forma directa a tus contactos.</p>
         </header>
 
         <main class="catalog-grid">
@@ -75,8 +75,8 @@
                     <h2 class="card-title">Infraestructura y Conectividad</h2>
                     <p class="card-description">Soluciones profesionales en cableado estructurado, enlaces inalámbricos y optimización de redes empresariales.</p>
                     
-                    <button class="btn-whatsapp" onclick="prepareAndShare('Infraestructura y Conectividad', 'https://bytecomtec.github.io/marketing/Agradecimiento.jpg')">
-                        <i class="fab fa-whatsapp"></i> Preparar y Enviar
+                    <button class="btn-whatsapp" onclick="shareDirectImage('Infraestructura y Conectividad', 'https://bytecomtec.github.io/marketing/Agradecimiento.jpg')">
+                        <i class="fas fa-share-alt"></i> Enviar Flyer Directo
                     </button>
                 </div>
             </article>
@@ -89,8 +89,8 @@
                     <h2 class="card-title">Sistemas de Seguridad CCTV</h2>
                     <p class="card-description">Monitoreo inteligente con cámaras IP y análogas de alta definición, sistemas de alerta y analítica de video.</p>
                     
-                    <button class="btn-whatsapp" onclick="prepareAndShare('Sistemas de Seguridad CCTV', 'https://bytecomtec.github.io/marketing/Agradecimiento.jpg')">
-                        <i class="fab fa-whatsapp"></i> Preparar y Enviar
+                    <button class="btn-whatsapp" onclick="shareDirectImage('Sistemas de Seguridad CCTV', 'https://bytecomtec.github.io/marketing/Agradecimiento.jpg')">
+                        <i class="fas fa-share-alt"></i> Enviar Flyer Directo
                     </button>
                 </div>
             </article>
@@ -99,35 +99,40 @@
     </div>
 
     <script>
-        async function prepareAndShare(title, imageUrl) {
-            try {
-                // 1. Descargar la imagen en segundo plano para convertirla en un elemento del portapapeles
-                const data = await fetch(imageUrl);
-                const blob = await data.blob();
-
-                // 2. Forzar el copiado de la imagen real al portapapeles del dispositivo
-                await navigator.clipboard.write([
-                    new ClipboardItem({
-                        [blob.type]: blob
-                    })
-                ]);
-                
-                alert("¡Flyer copiado! Al abrir WhatsApp, solo mantén presionado o dale Ctrl+V para pegar la imagen directa.");
-
-            } catch (err) {
-                console.log("Nota: El copiado directo requiere HTTPS activo en GitHub Pages para funcionar.");
+        async function shareDirectImage(title, imageUrl) {
+            // Verificar si el navegador soporta compartir archivos nativos (Móviles y navegadores modernos)
+            if (!navigator.share || !navigator.canShare) {
+                alert("Tu navegador o equipo no soporta el envío directo de archivos. Se abrirá la alternativa clásica por enlace.");
+                window.open(`https://api.whatsapp.com/send?text=${encodeURIComponent('Revisa nuestro flyer: ' + imageUrl)}`, '_blank');
+                return;
             }
 
-            // 3. Redirección limpia a WhatsApp con el texto introductorio
-            const text = `Hola, te comparto la información sobre *${title}*:`;
-            const encodedText = encodeURIComponent(text);
-            const isMobile = /Android|iPhone|iPad/i.test(navigator.userAgent);
-            
-            let whatsappUrl = isMobile 
-                ? `https://api.whatsapp.com/send?text=${encodedText}`
-                : `https://web.whatsapp.com/send?text=${encodedText}`;
+            try {
+                // 1. Descargar la imagen y convertirla en un archivo real interpretable por el sistema operativo
+                const response = await fetch(imageUrl);
+                const blob = await response.blob();
+                
+                // Extraer el nombre del archivo de la URL
+                const fileName = imageUrl.substring(imageUrl.lastIndexOf('/') + 1);
+                const file = new File([blob], fileName, { type: blob.type });
 
-            window.open(whatsappUrl, '_blank');
+                // 2. Validar si el sistema acepta compartir este archivo específico
+                if (navigator.canShare({ files: [file] })) {
+                    await navigator.share({
+                        files: [file],
+                        title: title,
+                        text: `Hola, te comparto la información sobre *${title}*:`
+                    });
+                } else {
+                    throw new Error("El sistema operativo no permite compartir este archivo.");
+                }
+
+            } catch (error) {
+                console.error("Error al compartir:", error);
+                // Respaldo inmediato si el fetch falla por políticas de red (CORS)
+                alert("Abriendo chat. Recuerda que puedes guardar el flyer y reenviarlo directamente.");
+                window.open(`https://api.whatsapp.com/send?text=${encodeURIComponent('Flyer: ' + title + ' - ' + imageUrl)}`, '_blank');
+            }
         }
     </script>
 
