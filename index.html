@@ -191,3 +191,29 @@
                     
                     <a href="#" class="btn-whatsapp" onclick="shareWhatsApp(this, 'Sistemas de Seguridad CCTV', 'https://bytecomtec.github.io/marketing/Agradecimiento.jpg')">
                         <i class="fab fa-whatsapp"></i> Compartir por WhatsApp
+                    </a>
+                </div>
+            </article>
+
+        </main>
+    </div>
+
+    <script>
+        function shareWhatsApp(element, title, imageUrl) {
+            // Mensaje limpio estructurado con negritas para destacar el título del recurso
+            const text = `Hola, te comparto la información sobre *${title}*.\n\nPuedes ver el flyer completo ingresando aquí:\n${imageUrl}`;
+            const encodedText = encodeURIComponent(text);
+            
+            // Detección de entorno móvil vs escritorio
+            const isMobile = /Android|iPhone|iPad/i.test(navigator.userAgent);
+            let whatsappUrl = isMobile 
+                ? `https://api.whatsapp.com/send?text=${encodedText}`
+                : `https://web.whatsapp.com/send?text=${encodedText}`;
+
+            element.href = whatsappUrl;
+            element.target = "_blank";
+        }
+    </script>
+
+</body>
+</html>
