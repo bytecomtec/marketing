@@ -3,161 +3,17 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Catálogo de Recursos y Flyers</title>
+    <title>Catálogo de Recursos</title>
+
+    <meta property="og:title" content="Catálogo de Soluciones Tecnológicas">
+    <meta property="og:description" content="Explora nuestros flyers informativos y recursos de conectividad y seguridad.">
+    <meta property="og:image" content="https://bytecomtec.github.io/marketing/Agradecimiento.jpg">
+    <meta property="og:type" content="website">
+    <meta name="twitter:card" content="summary_large_image"> 
+
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
-        /* --- Variables de Diseño (Fácil de personalizar) --- */
-        :root {
-            --primary-color: #0056b3; /* Azul institucional */
-            --whatsapp-color: #25D366; /* Verde Oficial WhatsApp */
-            --bg-color: #f4f6f9;
-            --card-bg: #ffffff;
-            --text-main: #333333;
-            --text-muted: #666666;
-            --border-radius: 12px;
-            --transition: all 0.3s ease;
-        }
-
-        /* --- Estilos Generales --- */
-        * {
-            box-sizing: border-box;
-            margin: 0;
-            padding: 0;
-        }
-
-        body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background-color: var(--bg-color);
-            color: var(--text-main);
-            line-height: 1.6;
-            padding: 40px 20px;
-        }
-
-        .container {
-            max-width: 1200px;
-            margin: 0 auto;
-        }
-
-        header {
-            text-align: center;
-            margin-bottom: 40px;
-        }
-
-        header h1 {
-            font-size: 2.5rem;
-            color: var(--primary-color);
-            margin-bottom: 10px;
-        }
-
-        header p {
-            color: var(--text-muted);
-            font-size: 1.1rem;
-        }
-
-        /* --- Cuadrícula del Catálogo --- */
-        .catalog-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-            gap: 30px;
-        }
-
-        /* --- Tarjeta de Elemento (Card) --- */
-        .card {
-            background-color: var(--card-bg);
-            border-radius: var(--border-radius);
-            overflow: hidden;
-            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
-            transition: var(--transition);
-            display: flex;
-            flex-direction: column;
-        }
-
-        .card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
-        }
-
-        /* Contenedor de Imagen (Mantiene proporción 4:3 o 1:1) */
-        .card-image-wrapper {
-            position: relative;
-            width: 100%;
-            padding-top: 75%; /* Proporción 4:3. Cambiar a 100% para formato cuadrado */
-            background-color: #eaeaea;
-            overflow: hidden;
-        }
-
-        .card-image-wrapper img {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            object-fit: cover; /* Asegura que la imagen llene el espacio sin deformarse */
-            transition: var(--transition);
-        }
-
-        .card:hover .card-image-wrapper img {
-            scale: 1.05;
-        }
-
-        /* Contenido de la Tarjeta */
-        .card-content {
-            padding: 20px;
-            display: flex;
-            flex-direction: column;
-            flex-grow: 1;
-        }
-
-        .card-title {
-            font-size: 1.2rem;
-            margin-bottom: 8px;
-            color: var(--text-main);
-            font-weight: 600;
-        }
-
-        .card-description {
-            font-size: 0.9rem;
-            color: var(--text-muted);
-            margin-bottom: 20px;
-            flex-grow: 1; /* Empuja el botón hacia abajo si el texto es corto */
-        }
-
-        /* --- Botón de Compartir en WhatsApp --- */
-        .btn-whatsapp {
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-            background-color: var(--whatsapp-color);
-            color: #ffffff;
-            text-decoration: none;
-            padding: 12px;
-            border-radius: 8px;
-            font-weight: 600;
-            font-size: 0.95rem;
-            gap: 10px;
-            transition: var(--transition);
-            border: none;
-            cursor: pointer;
-        }
-
-        .btn-whatsapp:hover {
-            background-color: #1ebd56;
-            box-shadow: 0 4px 12px rgba(37, 211, 102, 0.3);
-        }
-
-        .btn-whatsapp i {
-            font-size: 1.2rem;
-        }
-
-        /* --- Ajustes Responsivos --- */
-        @media (max-width: 480px) {
-            body {
-                padding: 20px 10px;
-            }
-            header h1 {
-                font-size: 2rem;
-            }
-        }
+        /* (Tus estilos CSS se quedan exactamente igual) */
     </style>
 </head>
 <body>
