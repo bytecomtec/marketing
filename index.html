@@ -3,66 +3,151 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Catálogo Tecnológico Integrado</title>
-    <link rel="stylesheet" href="css/style.css">
-</head>
-<body>
+    <title>Bytecomtec - Catálogo Escolar</title>
+    
+    <style>
+        :root {
+            --primary-color: #2c3e50;    /* Azul oscuro corporativo y formal */
+            --accent-color: #27ae60;     /* Verde para destacar avisos o botones */
+            --bg-color: #f4f6f8;         /* Fondo gris claro, descansa la vista en móvil */
+            --text-color: #34495e;
+            --card-bg: #ffffff;
+        }
 
-    <header class="main-header">
-        <h1>Bytecomtec</h1>
-        <p>Soluciones Tecnológicas Integrales</p>
-    </header>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+        }
 
-    <section class="promo-container">
-        <div class="promo-banner">
-            <img src="assets/publicidad/banner-inicio-1.webp" alt="Promoción Especial Escuelas" class="promo-img">
-            <div class="promo-badge">¡Soluciones Disponibles!</div>
-        </div>
-    </section>
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            padding-bottom: 30px; /* Espacio al final para que no tape el contenido el menú del móvil */
+        }
 
-    <main class="menu-grid">
-        <a href="categorias/videovigilancia/index.html" class="card-btn">
-            <span class="icon">📹</span>
-            <span class="title">Videovigilancia</span>
-        </a>
-        
-        <a href="categorias/redes/index.html" class="card-btn">
-            <span class="icon">🌐</span>
-            <span class="title">Redes y Wi-Fi</span>
-        </a>
+        /* Encabezado Principal */
+        .main-header {
+            background-color: var(--primary-color);
+            color: white;
+            padding: 20px 15px;
+            text-align: center;
+        }
 
-        <a href="categorias/audio/index.html" class="card-btn">
-            <span class="icon">📢</span>
-            <span class="title">Audio Escolar</span>
-        </a>
+        .main-header h1 {
+            font-size: 1.5rem;
+            letter-spacing: 0.5px;
+        }
 
-        <a href="categorias/proyectores/index.html" class="card-btn">
-            <span class="icon">📽️</span>
-            <span class="title">Proyectores</span>
-        </a>
+        .main-header p {
+            font-size: 0.85rem;
+            opacity: 0.8;
+            margin-top: 4px;
+        }
 
-        <a href="categorias/pantallas/index.html" class="card-btn">
-            <span class="icon">🖥️</span>
-            <span class="title">Pantallas Interactivas</span>
-        </a>
+        /* Sección de Publicidad / Banner Superior */
+        .promo-container {
+            padding: 15px 15px 5px 15px;
+        }
 
-        <a href="categorias/smarttv/index.html" class="card-btn">
-            <span class="icon">📺</span>
-            <span class="title">Smart TV</span>
-        </a>
-    </main>
+        .promo-banner {
+            position: relative;
+            width: 100%;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.06);
+        }
 
-    <section class="docs-section">
-        <h2>Documentación y Agradecimientos</h2>
-        <div class="docs-grid">
-            <a href="assets/documentos/agradecimiento-primaria.pdf" target="_blank" class="doc-item">
-                📄 Agradecimiento (Básica)
-            </a>
-            <a href="assets/documentos/presentacion-institucional.pdf" target="_blank" class="doc-item">
-                📄 Presentación Corporativa
-            </a>
-        </div>
-    </section>
+        .promo-img {
+            width: 100%;
+            height: auto;
+            display: block;
+            object-fit: cover;
+        }
 
-</body>
-</html>
+        .promo-badge {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            background-color: var(--accent-color);
+            color: white;
+            font-size: 0.7rem;
+            font-weight: bold;
+            padding: 4px 8px;
+            border-radius: 4px;
+            text-transform: uppercase;
+        }
+
+        /* Cuadrícula de Botones / Categorías (Diseño optimizado para pulgar) */
+        .menu-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr); /* Dos columnas perfectas en vertical */
+            gap: 12px;
+            padding: 12px;
+        }
+
+        .card-btn {
+            background-color: var(--card-bg);
+            border-radius: 12px;
+            padding: 22px 10px;
+            text-align: center;
+            text-decoration: none;
+            color: var(--text-color);
+            box-shadow: 0 3px 6px rgba(0,0,0,0.03);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            transition: background-color 0.1s, transform 0.1s;
+            -webkit-tap-highlight-color: transparent; /* Elimina el cuadro azul raro al tocar en Android/iOS */
+        }
+
+        /* Efecto visual inmediato al presionar en la pantalla táctil */
+        .card-btn:active {
+            transform: scale(0.96);
+            background-color: #f0f0f0;
+        }
+
+        .card-btn .icon {
+            font-size: 2.2rem;
+            margin-bottom: 8px;
+        }
+
+        .card-btn .title {
+            font-size: 0.85rem;
+            font-weight: 700;
+            line-height: 1.2;
+        }
+
+        /* Sección Inferior de Documentos / Agradecimientos */
+        .docs-section {
+            padding: 15px;
+            margin-top: 5px;
+        }
+
+        .docs-section h2 {
+            font-size: 1.05rem;
+            margin-bottom: 10px;
+            color: var(--primary-color);
+            font-weight: 700;
+        }
+
+        .docs-grid {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        .doc-item {
+            background-color: #eef2f5;
+            border-left: 4px solid var(--accent-color);
+            padding: 14px 15px;
+            border-radius: 0 8px 8px 0;
+            text-decoration: none;
+            color: var(--primary-color);
+            font-weight: 600;
+            font-size: 0.9rem;
+            display: flex;
+            align-items: center;
+            box-shadow: 0 2px 4px rgba(0,0,0,
